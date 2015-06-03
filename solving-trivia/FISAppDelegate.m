@@ -17,11 +17,149 @@
 {
 
     // write your solution here!
+    NSArray *states = @[@"Alabama",
+                        @"Alaska",
+                        @"Arizona",
+                        @"Arkansas",
+                        @"California",
+                        @"Colorado",
+                        @"Connecticut",
+                        @"Delaware",
+                        @"Florida",
+                        @"Georgia",
+                        @"Hawaii",
+                        @"Idaho",
+                        @"Illinois",
+                        @"Indiana",
+                        @"Iowa",
+                        @"Kansas",
+                        @"Kentucky",
+                        @"Louisiana",
+                        @"Maine",
+                        @"Maryland",
+                        @"Massachusetts",
+                        @"Michigan",
+                        @"Minnesota",
+                        @"Mississippi",
+                        @"Missouri",
+                        @"Montana",
+                        @"Nebraska",
+                        @"Nevada",
+                        @"New Hampshire",
+                        @"New Jersey",
+                        @"New Mexico",
+                        @"New York",
+                        @"North Carolina",
+                        @"North Dakota",
+                        @"Ohio",
+                        @"Oklahoma",
+                        @"Oregon",
+                        @"Pennsylvania",
+                        @"Rhode Island",
+                        @"South Carolina",
+                        @"South Dakota",
+                        @"Tennessee",
+                        @"Texas",
+                        @"Utah",
+                        @"Vermont",
+                        @"Virginia",
+                        @"Washington",
+                        @"West Virginia",
+                        @"Wisconsin",
+                        @"Wyoming"];
     
-    return @"";
+    NSArray *capitals = @[
+                          @"Montgomery",
+                          @"Juneau",
+                          @"Phoenix",
+                          @"Little Rock",
+                          @"Sacramento",
+                          @"Denver",
+                          @"Hartford",
+                          @"Dover",
+                          @"Tallahassee",
+                          @"Atlanta",
+                          @"Honolulu",
+                          @"Boise",
+                          @"Springfield",
+                          @"Indianapolis",
+                          @"Des Moines",
+                          @"Topeka",
+                          @"Frankfort",
+                          @"Baton Rouge",
+                          @"Augusta",
+                          @"Annapolis",
+                          @"Boston",
+                          @"Lansing",
+                          @"St. Paul",
+                          @"Jackson",
+                          @"Jefferson City",
+                          @"Helena",
+                          @"Lincoln",
+                          @"Carson City",
+                          @"Concord",
+                          @"Trenton",
+                          @"Santa Fe",
+                          @"Albany",
+                          @"Raleigh",
+                          @"Bismarck",
+                          @"Columbus",
+                          @"Oklahoma City",
+                          @"Salem",
+                          @"Harrisburg",
+                          @"Providence",
+                          @"Columbia",
+                          @"Pierre",
+                          @"Nashville",
+                          @"Austin",
+                          @"Salt Lake City",
+                          @"Montpelier",
+                          @"Richmond",
+                          @"Olympia",
+                          @"Charleston",
+                          @"Madison",
+                          @"Cheyenne"];
+    
+    NSString *correctState = @"";
+    
+    for (NSUInteger i = 0; i < [states count]; i++){
+        
+        // Get letters in state
+        // NSMutableArray *stateLetters = [[NSMutableArray alloc] init];
+        
+        BOOL matcher = NO;
+        
+        NSString *singleState = [states[i] lowercaseString];
+        NSString *singleCapital = [capitals[i] lowercaseString];
+        
+        for (NSUInteger x = 0; x < [singleState length]; x++){
+            NSString *stateLetter = [NSString stringWithFormat:@"%c", [singleState characterAtIndex:x]]; // Take one letter of STATE
+            
+            for (NSUInteger y = 0; y < [singleCapital length]; y++){ // Compare each letter of STATE with each letter of CAPITAL
+                NSString *capitalLetter = [NSString stringWithFormat:@"%c", [singleCapital characterAtIndex:y]];
+                
+                if ([stateLetter isEqualToString:capitalLetter]){
+                    // NSLog(@"Theres a match!");
+                    matcher = YES;
+                }
+                else {
+                    // NSLog(@"There is no match");
+                    //                    NSLog(@"%@", singleState);
+                }
+            }
+        }
+        if (matcher == NO){
+            correctState = states[i];
+        }
+    }
+    NSLog(@"%@", correctState);
+    return correctState;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [self solveTrivia];
+    
     // Override point for customization after application launch.
     return YES;
 }
